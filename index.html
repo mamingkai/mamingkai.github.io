@@ -7,6 +7,37 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+			    <style>
+	        .popup {
+	            position: fixed;
+	            z-index: 1;
+	            left: 0;
+	            top: 0;
+	            width: 100%;
+	            height: 100%;
+	            overflow: auto;
+	            background-color: rgba(0, 0, 0, 0.4);
+	            display: none;
+	        }
+	        .popup-content {
+	            background-color: white;
+	            margin: 10% auto;
+	            padding: 20px;
+	            border: 1px solid #888888;
+	            width: 30%;
+	            font-weight: bolder;
+	        }
+	        .popup-content button {
+	            display: block;
+	            margin: 0 auto;
+	        }
+	        .show {
+	            display: block;
+	        }
+	        h1 {
+	            color: green;
+	        }
+	    </style>
 	</head>
 	<body class="is-preload">
 
@@ -38,12 +69,20 @@
 							<p>My research interests lie on nutrients/metal dynamics at the mineral-water interface, with a special focus on the (Fe) redox processes.
 								Currently I am a PhD candidate at <a href="https://www.uu.nl/en/research/department-of-earth-sciences/geochemistry">UU geochemistry group</a>
 								and also a Early-stage-researcher of EU Marie Sklodowska-Curie ITN project <a href="https://h2020-p-trap.eu/">P-TRAP</a>.</p>
-							<p>As an EE(experi-/environ-) mental geochemist, I employ various laboratory techniques <span style="font-size: smaller;">[spectroscopies(absorption, diffration, Mössbauer, X-ray and synchrotron-based), isotopes(stable isotopes, radionuclides),
-								microscopies(EM, TEM)]</span> and modeling <span style="font-size: smaller;">[kinetic, mechanistic, and Machine Learning]</span> to study the mechanisms and kinetics of the relevant processes in nature environments. </p>
+							<p>As an EE(experi-/environ-) mental geochemist, I employ various <strong id="click1">laboratory techniques</strong> <span style="font-size: smaller;">[spectroscopies(absorption, diffration, Mössbauer, X-ray and synchrotron-based), isotopes(stable isotopes, radionuclides),
+								microscopies(EM, TEM, AFM)]</span> and <strong>modeling</strong> <span style="font-size: smaller;">[kinetic, mechanistic, and Machine Learning]</span> to study the mechanisms and kinetics of the adsorption, desorption and transformation processes in nature environments. </p>
 							<p><a href="https://scholar.google.com/citations?user=QmYEdmoAAAAJ&hl=en">Check my publications(google scholar)</a><p>
 							<ul class="actions">
 								<li><a href="#one" class="button scrolly">Learn more</a></li>
 							</ul>
+							<div id="popup1" class="popup">
+						        <div class="popup-content">
+						            <p>test test and test</p>
+						            <botton id="closePopup">
+						                  Close
+						            </button>
+						        </div>
+						    </div>
 						</div>
 					</section>
 
@@ -66,8 +105,8 @@
 							<a href="#" class="image"><img src="images/pic02.jpg" alt="" data-position="top center" /></a>
 							<div class="content">
 								<div class="inner">
-									<h2>Feugiat consequat</h2>
-									<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
+									<h2>The interaction force between Fe mineral and common soil bacteria</h2>
+									<p></p>
 									<ul class="actions">
 										<li><a href="generic.html" class="button">Learn more</a></li>
 									</ul>
@@ -206,6 +245,21 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-
+			<script>
+			        click1.addEventListener("click", function () {
+			            popup1.classList.add("show");
+			        });
+			        mybut2.addEventListener("click", function () {
+			            popup1.classList.add("show");
+			        });
+			        closePopup.addEventListener("click", function () {
+			            popup1.classList.remove("show");
+			        });
+			        window.addEventListener("click", function (event) {
+			            if (event.target == popup1) {
+			                popup1.classList.remove("show");
+			            }
+			        });
+			</script>
 	</body>
 </html>
