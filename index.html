@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-			    <style>
+		<style>
 	        .popup {
 	            position: fixed;
 	            z-index: 1;
@@ -75,7 +75,7 @@
 							<div id="myPopup" class="popup">
 						        <div class="popup-content">
 						            <p>test test and test</p>
-						            <botton id="closePopup">
+						            <button id="closePopup">
 						                  Close
 						            </button>
 						        </div>
@@ -243,20 +243,29 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 			<script>
+			document.addEventListener('DOMContentLoaded', function () {
+			    var click1 = document.getElementById('click1');
+			    var closePopup = document.getElementById('closePopup');
+			    var myPopup = document.getElementById('myPopup');
+			
+			    if (click1) {
 			        click1.addEventListener("click", function () {
 			            myPopup.classList.add("show");
 			        });
-			        mybut2.addEventListener("click", function () {
-			            myPopup.classList.add("show");
-			        });
+			    }
+			
+			    if (closePopup) {
 			        closePopup.addEventListener("click", function () {
 			            myPopup.classList.remove("show");
 			        });
-			        window.addEventListener("click", function (event) {
-			            if (event.target == myPopup) {
-			                myPopup.classList.remove("show");
-			            }
-			        });
+			    }
+			
+			    window.addEventListener("click", function (event) {
+			        if (event.target === myPopup) {
+			            myPopup.classList.remove("show");
+			        }
+			    });
+			});
 			</script>
 	</body>
 </html>
