@@ -1,2 +1,2 @@
-personal website for my self.
+personal website.
 #powered by HTML5UP
