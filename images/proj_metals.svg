@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" font-family="Helvetica,Arial,sans-serif">
+<rect width="1200" height="800" fill="#1d2d44"/>
+<rect y="560" width="1200" height="240" fill="#d1642f"/>
+<g fill="#8d3b17">
+<g id="s"><circle cx="0" cy="0" r="26"/></g></g>
+<g fill="#f6e8d8" font-size="22" text-anchor="middle">
+<g fill="#b5502a"><circle cx="100" cy="590" r="30"/><circle cx="260" cy="590" r="30"/><circle cx="420" cy="590" r="30"/><circle cx="580" cy="590" r="30"/><circle cx="740" cy="590" r="30"/><circle cx="900" cy="590" r="30"/><circle cx="1060" cy="590" r="30"/></g>
+<text x="100" y="598">FeOH</text><text x="260" y="598">FeOH</text><text x="420" y="598">FeOH</text><text x="580" y="598">FeOH</text><text x="740" y="598">FeOH</text><text x="900" y="598">FeOH</text><text x="1060" y="598">FeOH</text></g>
+<!-- bound metals -->
+<g text-anchor="middle" font-size="22" font-weight="bold" fill="#14213d">
+<circle cx="180" cy="520" r="34" fill="#e63946"/><text x="180" y="528" fill="#fff">Pb</text>
+<circle cx="500" cy="520" r="34" fill="#f4d35e"/><text x="500" y="528">Cd</text>
+<circle cx="820" cy="520" r="34" fill="#2ec4b6"/><text x="820" y="528">Cu</text></g>
+<g stroke="#fff" stroke-width="4"><line x1="165" y1="548" x2="110" y2="570"/><line x1="195" y1="548" x2="250" y2="570"/><line x1="485" y1="548" x2="430" y2="570"/><line x1="515" y1="548" x2="570" y2="570"/><line x1="805" y1="548" x2="750" y2="570"/><line x1="835" y1="548" x2="890" y2="570"/></g>
+<!-- free metals -->
+<g text-anchor="middle" font-size="22" font-weight="bold">
+<circle cx="340" cy="300" r="34" fill="#e63946"/><text x="340" y="308" fill="#fff">Pb</text>
+<circle cx="660" cy="240" r="34" fill="#f4d35e"/><text x="660" y="248" fill="#14213d">Cd</text>
+<circle cx="980" cy="330" r="34" fill="#2ec4b6"/><text x="980" y="338" fill="#14213d">Cu</text>
+<circle cx="1060" cy="170" r="34" fill="#e63946"/><text x="1060" y="178" fill="#fff">Pb</text></g>
+<g stroke="#fff" stroke-width="3" stroke-dasharray="8 8" fill="none"><path d="M340 340 L240 480"/><path d="M660 280 L560 470"/></g>
+<text x="40" y="60" fill="#fff" font-size="30">Dissolved metals</text>
+<text x="40" y="770" fill="#fff" font-size="28">Iron oxide surface: complexes form at surface sites</text>
+</svg>

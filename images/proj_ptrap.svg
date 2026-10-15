@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" font-family="Helvetica,Arial,sans-serif">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0f2a43"/><stop offset="1" stop-color="#1b4965"/></linearGradient>
+<marker id="ar" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12z" fill="#fff"/></marker></defs>
+<rect width="1200" height="800" fill="url(#g)"/>
+<g fill="none" stroke="#fff" stroke-width="5" marker-end="url(#ar)" opacity=".9">
+<path d="M400 230 C500 150 700 150 800 230"/><path d="M880 330 C920 450 880 540 800 590"/><path d="M700 640 C600 690 500 690 400 640"/><path d="M300 560 C240 480 260 380 320 320"/></g>
+<g text-anchor="middle" fill="#fff" font-size="26">
+<circle cx="340" cy="270" r="95" fill="#d1642f"/><text x="340" y="262" font-weight="bold">Fe(III) oxide</text><text x="340" y="296" font-size="22">+ adsorbed P</text>
+<circle cx="860" cy="270" r="95" fill="#222"/><text x="860" y="262" font-weight="bold">Fe(II) sulfide</text><text x="860" y="296" font-size="22">+ dissolved P</text>
+<circle cx="860" cy="620" r="95" fill="#2a9d8f"/><text x="860" y="628" font-weight="bold">Vivianite</text>
+<circle cx="340" cy="620" r="95" fill="#f2c14e"/><text x="340" y="612" font-weight="bold" fill="#14213d">Lake / pore</text><text x="340" y="646" font-weight="bold" fill="#14213d">water P</text></g>
+<g fill="#fff" font-size="22" text-anchor="middle" opacity=".95">
+<text x="600" y="130">+ sulfide</text><text x="990" y="470">+ P available</text><text x="600" y="745">burial / recovery</text><text x="200" y="450">diffusion, uptake</text></g>
+</svg>

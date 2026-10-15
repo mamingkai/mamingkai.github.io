@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" font-family="Helvetica,Arial,sans-serif">
+<rect width="1200" height="800" fill="#2b2d42"/>
+<g fill="#8d99ae"><rect x="0" y="120" width="1200" height="50" rx="25"/><rect x="0" y="260" width="1200" height="50" rx="25"/><rect x="0" y="400" width="1200" height="50" rx="25"/><rect x="0" y="540" width="1200" height="50" rx="25"/><rect x="0" y="680" width="1200" height="50" rx="25"/></g>
+<rect x="0" y="170" width="1200" height="90" fill="#4cc9f0" opacity=".35"/><rect x="0" y="310" width="1200" height="90" fill="#4cc9f0" opacity=".35"/><rect x="0" y="450" width="1200" height="90" fill="#4cc9f0" opacity=".35"/><rect x="0" y="590" width="1200" height="90" fill="#4cc9f0" opacity=".35"/>
+<g fill="#ffd166"><circle cx="200" cy="210" r="9"/><circle cx="480" cy="230" r="9"/><circle cx="800" cy="200" r="9"/><circle cx="360" cy="350" r="9"/><circle cx="700" cy="370" r="9"/><circle cx="1000" cy="340" r="9"/><circle cx="260" cy="490" r="9"/><circle cx="620" cy="500" r="9"/><circle cx="940" cy="480" r="9"/><circle cx="420" cy="630" r="9"/><circle cx="860" cy="640" r="9"/></g>
+<g fill="#ef476f"><circle cx="330" cy="200" r="7"/><circle cx="900" cy="230" r="7"/><circle cx="540" cy="340" r="7"/><circle cx="840" cy="380" r="7"/><circle cx="140" cy="520" r="7"/><circle cx="760" cy="520" r="7"/><circle cx="600" cy="650" r="7"/><circle cx="1060" cy="620" r="7"/></g>
+<g fill="#06d6a0"><circle cx="620" cy="225" r="6"/><circle cx="160" cy="360" r="6"/><circle cx="880" cy="500" r="6"/><circle cx="300" cy="640" r="6"/><circle cx="1100" cy="360" r="6"/></g>
+<!-- sampler -->
+<rect x="1080" y="30" width="26" height="300" rx="8" fill="#edf2f4"/><rect x="1086" y="330" width="14" height="40" fill="#edf2f4"/>
+<text x="40" y="70" fill="#fff" font-size="30">Clay-rich sediment: thin pore-water films between mineral layers</text>
+<g font-size="24" fill="#fff"><circle cx="60" cy="760" r="9" fill="#ffd166"/><text x="80" y="768">trace element</text><circle cx="320" cy="760" r="7" fill="#ef476f"/><text x="340" y="768">metal</text><circle cx="520" cy="760" r="6" fill="#06d6a0"/><text x="540" y="768">anion</text></g>
+</svg>

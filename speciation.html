@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Speciation explorer - Dr. Mingkai Ma</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+			.chartbox { position: relative; height: 340px; margin-bottom: 1.5em; }
+			.sl { width: 100%; }
+			.note { font-size: .8em; opacity: .75; }
+			.kpi { display: flex; flex-wrap: wrap; gap: 1em; margin: 1em 0 2em 0; }
+			.kpi div { flex: 1 1 140px; padding: 1em; border: solid 1px rgba(160,160,160,.4); border-radius: 6px; text-align: center; }
+			.kpi strong { display: block; font-size: 1.6em; }
+		</style>
+	</head>
+	<body class="is-preload">
+		<header id="header">
+			<a href="index.html" class="title">Dr. Mingkai Ma</a>
+			<nav><ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="ptrap.html">P-TRAP Project</a></li>
+				<li><a href="speciation.html" class="active">Speciation explorer</a></li>
+			</ul></nav>
+		</header>
+		<div id="wrapper">
+			<section id="main" class="wrapper">
+				<div class="inner">
+					<h1 class="major">Phosphate and sulfide: who is who at your pH?</h1>
+					<p>Whether phosphate sticks to iron minerals, and how sulfide attacks them, depends strongly on the protonation state of both. Slide the pH to see which species dominate.
+						These are textbook equilibria (25&nbsp;&deg;C, zero ionic strength), not experimental data.</p>
+
+					<label for="ph"><strong>pH: <span id="phv">7.0</span></strong></label>
+					<input class="sl" id="ph" type="range" min="2" max="12" step="0.1" value="7" />
+					<div class="kpi" id="kpi"></div>
+
+					<h3>Phosphate (H<sub>3</sub>PO<sub>4</sub>, pK<sub>a</sub> 2.15 / 7.20 / 12.35)</h3>
+					<div class="chartbox"><canvas id="cp"></canvas></div>
+					<h3>Sulfide (H<sub>2</sub>S, pK<sub>a1</sub> &approx; 7.0)</h3>
+					<div class="chartbox" style="height:260px"><canvas id="cs"></canvas></div>
+
+					<p>In most freshwater sediments (pH 6&ndash;8.5) phosphate sits at the H<sub>2</sub>PO<sub>4</sub><sup>-</sup>/HPO<sub>4</sub><sup>2-</sup> boundary, while sulfide switches from mostly H<sub>2</sub>S to mostly HS<sup>-</sup> right around neutral pH.
+						Small pH shifts therefore change surface charge, adsorption affinity and the reactivity of dissolved sulfide at the same time. This is one reason pH is such a strong control in my iron&ndash;phosphorus experiments.</p>
+					<p class="note">Second sulfide pK<sub>a</sub> is poorly constrained and negligible below pH 12, so it is omitted.</p>
+
+					<ul class="actions">
+						<li><a href="index.html" class="button primary">Back to Home</a></li>
+						<li><a href="ptrap.html" class="button">P-TRAP Project</a></li>
+					</ul>
+				</div>
+			</section>
+		</div>
+		<footer id="footer" class="wrapper alt"><div class="inner"><ul class="menu"><li>&copy; Mingkai Ma. All rights reserved.</li><li>Powered by: HTML5 UP</li></ul></div></footer>
+
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+		<script>
+		(function () {
+			var K = [Math.pow(10, -2.15), Math.pow(10, -7.20), Math.pow(10, -12.35)], KS = Math.pow(10, -7.0);
+			function phos(pH) { var h = Math.pow(10, -pH), d = h*h*h + K[0]*h*h + K[0]*K[1]*h + K[0]*K[1]*K[2];
+				return [h*h*h/d, K[0]*h*h/d, K[0]*K[1]*h/d, K[0]*K[1]*K[2]/d].map(function (x) { return 100*x; }); }
+			function sulf(pH) { var h = Math.pow(10, -pH), d = h + KS; return [100*h/d, 100*KS/d]; }
+			var xs = [], i; for (i = 20; i <= 120; i++) xs.push(i/10);
+			var col = ['#8c8c8c', '#4e79a7', '#59a14f', '#e15759'], grid = 'rgba(128,128,128,.2)';
+			function opts(t) { return { maintainAspectRatio: false, animation: false, interaction: { mode: 'index', intersect: false },
+				scales: { x: { type: 'linear', min: 2, max: 12, title: { display: true, text: 'pH' }, grid: { color: grid } },
+					y: { min: 0, max: 100, title: { display: true, text: '% of total' }, grid: { color: grid } } },
+				plugins: { annotation: false } }; }
+			function ds(label, c, f, k) { return { label: label, borderColor: c, pointRadius: 0, borderWidth: 2.5, data: xs.map(function (x) { return { x: x, y: f(x)[k] }; }) }; }
+			var marker = { id: 'marker', afterDraw: function (ch) { var x = ch.scales.x.getPixelForValue(+document.getElementById('ph').value), a = ch.chartArea, c = ch.ctx;
+				c.save(); c.strokeStyle = '#999'; c.setLineDash([5, 4]); c.beginPath(); c.moveTo(x, a.top); c.lineTo(x, a.bottom); c.stroke(); c.restore(); } };
+			var cp = new Chart(document.getElementById('cp'), { type: 'line', plugins: [marker], options: opts(),
+				data: { datasets: [ds('H₃PO₄', col[0], phos, 0), ds('H₂PO₄⁻', col[1], phos, 1), ds('HPO₄²⁻', col[2], phos, 2), ds('PO₄³⁻', col[3], phos, 3)] } });
+			var cs = new Chart(document.getElementById('cs'), { type: 'line', plugins: [marker], options: opts(),
+				data: { datasets: [ds('H₂S', '#edc948', sulf, 0), ds('HS⁻', '#b07aa1', sulf, 1)] } });
+			function upd() { var pH = +document.getElementById('ph').value, p = phos(pH), s = sulf(pH);
+				document.getElementById('phv').textContent = pH.toFixed(1);
+				document.getElementById('kpi').innerHTML =
+					'<div><strong>' + p[1].toFixed(0) + '%</strong>H₂PO₄⁻</div><div><strong>' + p[2].toFixed(0) + '%</strong>HPO₄²⁻</div>' +
+					'<div><strong>' + s[0].toFixed(0) + '%</strong>H₂S</div><div><strong>' + s[1].toFixed(0) + '%</strong>HS⁻</div>';
+				cp.update(); cs.update(); }
+			document.getElementById('ph').addEventListener('input', upd); upd();
+		})();
+		</script>
+	</body>
+</html>

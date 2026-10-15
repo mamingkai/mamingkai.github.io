@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" font-family="Helvetica,Arial,sans-serif">
+<defs>
+<marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#fff"/></marker>
+<linearGradient id="w" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3d7ea6"/><stop offset="1" stop-color="#1f4e79"/></linearGradient>
+<linearGradient id="s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b5835a"/><stop offset="0.45" stop-color="#6b4f3a"/><stop offset="1" stop-color="#2b2623"/></linearGradient>
+</defs>
+<rect width="900" height="500" fill="#14213d"/>
+<rect y="0" width="900" height="140" fill="url(#w)"/>
+<rect y="140" width="900" height="360" fill="url(#s)"/>
+<g fill="#fff" font-size="15">
+<text x="20" y="28" font-weight="bold" font-size="17">Water column (oxic)</text>
+<text x="20" y="48" opacity=".85">Algae grow on dissolved phosphate (P)</text>
+<text x="20" y="168" font-weight="bold" font-size="17">Oxic sediment</text>
+<text x="20" y="188" opacity=".9">Fe(III) oxides adsorb P</text>
+<text x="20" y="300" font-weight="bold" font-size="17">Anoxic sediment</text>
+<text x="20" y="320" opacity=".9">Fe(III) reduced; sulfide appears</text>
+</g>
+<!-- sediment-water interface -->
+<line x1="0" y1="140" x2="900" y2="140" stroke="#fff" stroke-dasharray="6 5" opacity=".6"/>
+<!-- Fe oxide particles with P -->
+<g>
+<ellipse cx="380" cy="190" rx="34" ry="22" fill="#c8652b"/><circle cx="366" cy="184" r="6" fill="#ffd166"/><circle cx="392" cy="196" r="6" fill="#ffd166"/>
+<ellipse cx="500" cy="215" rx="30" ry="19" fill="#c8652b"/><circle cx="490" cy="213" r="6" fill="#ffd166"/>
+<ellipse cx="620" cy="185" rx="36" ry="22" fill="#c8652b"/><circle cx="606" cy="182" r="6" fill="#ffd166"/><circle cx="634" cy="190" r="6" fill="#ffd166"/>
+</g>
+<text x="440" y="250" fill="#fff" font-size="14" text-anchor="middle">Fe oxide + adsorbed P</text>
+<!-- FeS -->
+<ellipse cx="400" cy="370" rx="40" ry="20" fill="#1a1a1a" stroke="#888"/><text x="400" y="375" fill="#fff" font-size="13" text-anchor="middle">FeS</text>
+<!-- vivianite -->
+<ellipse cx="650" cy="400" rx="50" ry="22" fill="#2a9d8f" stroke="#fff"/><text x="650" y="405" fill="#fff" font-size="13" text-anchor="middle">Vivianite</text>
+<!-- dissolved P in porewater -->
+<circle cx="560" cy="320" r="6" fill="#ffd166"/><circle cx="590" cy="338" r="6" fill="#ffd166"/><circle cx="530" cy="345" r="6" fill="#ffd166"/>
+<text x="600" y="318" fill="#ffd166" font-size="14">dissolved P</text>
+<!-- arrows -->
+<g stroke="#fff" stroke-width="3" fill="none" marker-end="url(#a)">
+<path d="M440 270 L440 340" /><path d="M520 345 C500 300 480 280 480 270" opacity="0"/>
+<path d="M560 300 C560 230 700 200 720 150" stroke="#ffd166"/>
+<path d="M560 350 C590 380 600 385 598 392" stroke="#2a9d8f"/>
+<path d="M420 345 L420 360" opacity="0"/>
+</g>
+<g fill="#fff" font-size="13">
+<text x="448" y="305">reduction + sulfide</text>
+<text x="448" y="321">releases P</text>
+<text x="725" y="215">diffusion back to water</text>
+<text x="725" y="231">fuels algae blooms</text>
+<text x="690" y="445" opacity=".9">P re-trapped</text>
+</g>
+<text x="450" y="485" fill="#fff" font-size="12" text-anchor="middle" opacity=".7">Schematic illustration (not to scale)</text>
+</svg>
