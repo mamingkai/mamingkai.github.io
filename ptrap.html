@@ -40,6 +40,17 @@
 							<h2>When the oxygen goes, the story turns</h2>
 							<p>In deep, oxygen-free sediment, iron oxides are reduced and bacteria produce sulfide, the rotten-egg smell of swamps. Sulfide attacks iron minerals, and the phosphate they carried can be set free. Whether it stays free, drifts into the lake, or is caught again depends on a race between reactions. My PhD, as part of the EU Marie Curie network P-TRAP, set out to measure that race: how fast phosphate is bound, how fast it is released, and what decides the outcome.</p>
 
+							<div class="widget" style="margin:2em 0;padding:1.2em;border:solid 1px rgba(160,160,160,.4);border-radius:8px">
+<h3>Interactive: the redox ladder</h3>
+<p>Microbes breathe whatever gives them the most energy, in a fixed order. Feed the sediment more organic matter and watch the layers get squeezed towards the surface; then slide down to see which "breath" is happening at each depth.</p>
+<label>Organic matter input: <strong id="ladderOM_v"></strong></label><input type="range" id="ladderOM" min="1" max="10" value="3" style="width:100%">
+<label>Depth: <strong id="ladderZ_v"></strong></label><input type="range" id="ladderZ" min="0" max="29" value="3" style="width:100%">
+<div style="display:flex;gap:1em;flex-wrap:wrap;align-items:stretch;margin:1em 0">
+<div id="ladder" style="width:150px;height:300px;border-radius:6px;overflow:hidden;display:flex;flex-direction:column;flex:0 0 150px"></div>
+<div style="flex:1 1 280px;position:relative;height:300px"><canvas id="ladderChart"></canvas></div></div><p id="ladderTxt"></p>
+<p style="font-size:.8em;opacity:.75">Zone thicknesses are schematic and the energy values are textbook numbers (Froelich et al. style); real sediments vary a lot.</p>
+</div>
+
 							<h2>A beautiful blue second chance</h2>
 							<p>One of the endings is a mineral called vivianite, an iron phosphate that is colourless when freshly formed and turns a deep blue-green on contact with air. If phosphate is released but meets enough iron, vivianite can form and trap it again, even without oxygen. Understanding when this happens is exciting for two reasons: it can protect lakes, and vivianite has been proposed as a way to recover phosphate from sediments and wastewater.</p>
 

@@ -90,3 +90,67 @@
     el('afmA').addEventListener('input', afmUpdate); el('afmN').addEventListener('input', afmUpdate); afmUpdate();
   }
 })();
+
+(function () {
+  var grid = 'rgba(128,128,128,.2)';
+  function el(id) { return document.getElementById(id); }
+
+  /* ---- 4. Redox ladder ---- */
+  if (el('ladder')) {
+    var Z = [
+      { n: 'Oxygen respiration', c: '#4e79a7', b: 0.8, dG: 475, t: 'Microbes use dissolved oxygen first; it gives the most energy. Iron oxides stay intact and keep phosphate bound.' },
+      { n: 'Nitrate reduction', c: '#59a14f', b: 0.8, dG: 448, t: 'When oxygen is gone, nitrate is next. Still plenty of energy, and no iron is touched yet.' },
+      { n: 'Manganese oxide reduction', c: '#8c6bb1', b: 1.5, dG: 349, t: 'Manganese oxides dissolve and release the trace elements they carried.' },
+      { n: 'Iron oxide reduction', c: '#d1642f', b: 3, dG: 114, t: 'Rusty iron(III) oxides are dissolved by microbes. Phosphate and metals bound to them can be set free. This is the zone my PhD research is about.' },
+      { n: 'Sulfate reduction', c: '#b6a017', b: 6, dG: 77, t: 'Sulfate is turned into sulfide (the rotten-egg smell), which reacts with iron and can form iron sulfides.' },
+      { n: 'Methane production', c: '#7f7f7f', b: 99, dG: 58, t: 'The last resort of microbes, with the least energy. Methane bubbles up from deep, sulfate-free mud.' }
+    ];
+    var lc = new Chart(el('ladderChart'), {
+      type: 'bar',
+      data: { labels: Z.map(function (z) { return z.n; }), datasets: [{ data: Z.map(function (z) { return z.dG; }), backgroundColor: Z.map(function (z) { return z.c; }) }] },
+      options: { indexAxis: 'y', maintainAspectRatio: false, plugins: { legend: { display: false } },
+        scales: { x: { title: { display: true, text: 'Energy gained per mole of organic carbon (kJ), textbook values' }, grid: { color: grid } }, y: { grid: { display: false } } } }
+    });
+    function ladderUpdate() {
+      var om = +el('ladderOM').value, depth = 30, d = 0, html = '', hit = -1, z = +el('ladderZ').value, i;
+      for (i = 0; i < Z.length; i++) {
+        var th = Math.min(depth - d, Z[i].b / Math.sqrt(om / 3));
+        if (th <= 0) break;
+        if (z >= d && z < d + th) hit = i;
+        html += '<div style="height:' + (th / depth * 100) + '%;background:' + Z[i].c + ';opacity:' + (i === hit ? 1 : .55) + ';display:flex;align-items:center;justify-content:center;color:#fff;font-size:.72em;overflow:hidden">' + (th > 1.3 ? Z[i].n : '') + '</div>';
+        d += th;
+      }
+      el('ladder').innerHTML = html;
+      el('ladderOM_v').textContent = om; el('ladderZ_v').textContent = z.toFixed(0) + ' cm';
+      if (hit < 0) hit = Z.length - 1;
+      el('ladderTxt').innerHTML = '<strong>' + Z[hit].n + ':</strong> ' + Z[hit].t;
+    }
+    el('ladderOM').addEventListener('input', ladderUpdate); el('ladderZ').addEventListener('input', ladderUpdate); ladderUpdate();
+  }
+
+  /* ---- 5. Diffusion through clay ---- */
+  if (el('diffChart')) {
+    function erfc(x) { var t = 1 / (1 + 0.3275911 * Math.abs(x)), y = 1 - (((((1.061405429 * t - 1.453152027) * t) + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t * Math.exp(-x * x); return x >= 0 ? 1 - y : 1 + y; }
+    var Dp = 1e-10, yr = 3.156e7, xs = []; for (var k = 0; k <= 200; k++) xs.push(k * 0.2);
+    function C(x, t, R) { return 100 * erfc(x / (2 * Math.sqrt(Dp / R * t * yr))); }
+    function reach(t, R) { return 2 * Math.sqrt(Dp / R * t * yr) * 1.8214; } // erfc(u)=0.01 -> u=1.8214
+    var dc = new Chart(el('diffChart'), {
+      type: 'line',
+      data: { labels: xs, datasets: [{ label: 'Non-sorbing element (travels freely)', borderColor: '#4e79a7', borderWidth: 2.5, pointRadius: 0, data: [] }, { label: 'Your element', borderColor: '#e15759', borderWidth: 2.5, pointRadius: 0, data: [] }] },
+      options: { maintainAspectRatio: false, animation: false,
+        scales: { x: { title: { display: true, text: 'Distance into the clay (m)' }, ticks: { maxTicksLimit: 9 }, grid: { color: grid } }, y: { min: 0, max: 100, title: { display: true, text: 'Concentration (% of source)' }, grid: { color: grid } } } }
+    });
+    function diffUpdate() {
+      var t = Math.pow(10, +el('diffT').value), kd = Math.pow(10, +el('diffK').value), R = 1 + 5.7 * kd;
+      dc.data.datasets[0].data = xs.map(function (x) { return C(x, t, 1); });
+      dc.data.datasets[1].data = xs.map(function (x) { return C(x, t, R); });
+      dc.update();
+      var r0 = reach(t, 1), r1 = reach(t, R);
+      function f(m) { return m >= 1 ? m.toFixed(1) + ' m' : (m * 100).toFixed(1) + ' cm'; }
+      el('diffT_v').textContent = Math.round(t).toLocaleString() + ' years';
+      el('diffK_v').textContent = 'Kd = ' + kd.toPrecision(2) + ' L/kg (retardation ×' + R.toFixed(R < 10 ? 1 : 0) + ')';
+      el('diffTxt').innerHTML = 'After ' + Math.round(t).toLocaleString() + ' years, 1% of the source concentration has reached <strong>' + f(r0) + '</strong> for a non-sorbing element, but only <strong>' + f(r1) + '</strong> for your element. Sticking to clay slows migration by a factor of about ' + Math.round(Math.sqrt(R)) + ' in distance.';
+    }
+    el('diffT').addEventListener('input', diffUpdate); el('diffK').addEventListener('input', diffUpdate); diffUpdate();
+  }
+})();
