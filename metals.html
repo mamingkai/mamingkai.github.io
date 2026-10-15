@@ -43,6 +43,15 @@
 							<h2>Why pH rules everything</h2>
 							<p>Raise the pH and the oxide surface turns more negative, pulling in positively charged metal ions like a magnet; lower it and the same metals are pushed off. Between the two lies a sharp transition, the adsorption edge, where a small change in pH switches a metal from stuck to free. That is why acidifying a soil, or acid mine drainage, can flush metals out.</p>
 
+							<div class="widget" style="margin:2em 0;padding:1.2em;border:solid 1px rgba(160,160,160,.4);border-radius:8px">
+<h3>Interactive: the adsorption edge</h3>
+<p>Slide the pH and watch three metals jump from free to stuck on an iron oxide. Then add more reactive surface sites and see the edge move.</p>
+<label>pH: <strong id="edgePH_v"></strong></label><input type="range" id="edgePH" min="2" max="10" step="0.1" value="5.5" style="width:100%">
+<label>Amount of iron oxide surface: <strong id="edgeS_v"></strong></label><input type="range" id="edgeS" min="1" max="50" step="1" value="5" style="width:100%">
+<div style="position:relative;height:320px;margin:1em 0"><canvas id="edgeChart"></canvas></div><p id="edgeTxt"></p>
+<p style="font-size:.8em;opacity:.75">Illustrative curves showing the typical order Pb &lt; Cu &lt; Cd on iron oxides; not fitted to experimental data.</p>
+</div>
+
 							<h2>From models to clean-up</h2>
 							<p>Models like these help judge remediation strategies, for example adding iron minerals to contaminated soil, and warn when a once-safe sink could turn into a source. They also taught me a way of thinking that I use in all my later work: describe the surface honestly, write down the chemistry, and let the numbers show what the system is trying to tell you. Try it yourself in the <a href="speciation.html">pH explorer</a>.</p>
 
@@ -82,5 +91,7 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+		<script src="assets/js/widgets.js"></script>
 	</body>
 </html>
